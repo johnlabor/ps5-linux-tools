@@ -1,7 +1,7 @@
 # ps5-linux-tools
 
 - `ps5_control.c`: Allows turning on/off fan and boost via `/dev/icc` and `/dev/mp1`.
-- `systemd/ps5fan.service`: Starts fan control at boot by running `ps5_control --fan on`.
+- `systemd/ps5fan.service`: Starts fan control at boot by running `ps5_control --fan max` (or `--fan on`).
 - `systemd/ps5boost.service`: Starts boost mode at boot by running `ps5_control --boost on`.
 - `install.sh`: Builds `ps5_control`, installs the systemd services, and enables fan and boost at startup.
 - `m2_init.c`: Creates a fake MBR header and GPT partition that makes PS5 OS happy.
@@ -18,7 +18,8 @@ sudo ./install.sh
 
 The installer places `ps5_control` at `/usr/local/sbin/ps5_control` and installs:
 
-- `ps5fan.service`, which runs `/usr/local/sbin/ps5_control --fan on`
+- `ps5fan.service`, which runs `/usr/local/sbin/ps5_control --fan max` at boot and
+  `--fan off` on stop; `--fan on` (pattern 1) remains available for manual use
 - `ps5boost.service`, which runs `/usr/local/sbin/ps5_control --boost on`
 
 Disable either service if you do not want it at startup:

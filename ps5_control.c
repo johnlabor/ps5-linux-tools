@@ -16,7 +16,7 @@
 
 void print_usage(char *prog) {
   fprintf(stderr, "Usage:\n");
-  fprintf(stderr, "  %s --fan <on|off>\n", prog);
+  fprintf(stderr, "  %s --fan <on|off|max>\n", prog);
   fprintf(stderr, "  %s --boost <on|off>\n", prog);
 }
 
@@ -35,7 +35,7 @@ int main(int argc, char *argv[]) {
     else if (strcmp(argv[2], "max") == 0)
       pattern = 3;
     else {
-      fprintf(stderr, "Invalid fan state '%s'. Use 'on' or 'off'.\n", argv[2]);
+      fprintf(stderr, "Invalid fan state '%s'. Use 'on', 'off' or 'max'.\n", argv[2]);
       return EXIT_FAILURE;
     }
 
