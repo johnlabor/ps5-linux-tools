@@ -7,9 +7,9 @@ ConditionPathExists=/dev/icc
 Type=oneshot
 ExecStart=/usr/local/sbin/ps5_control --fan on
 ExecStop=/usr/local/sbin/ps5_control --fan off
-# The pattern change above reloads the firmware target (86 on Slim), overriding
-# the kernel's boot value, so the target is written back here. `on` (pattern 1)
-# is the normal fan curve; `max` (pattern 3) is available for harder cooling.
+# The pattern change above reloads the firmware stock target (86 on the fat,
+# 89 on the Slim), overriding the kernel's boot value, so the target is
+# written back here. `on` (pattern 1) is the normal fan curve; `max` (pattern 3) runs harder.
 ExecStartPost=/bin/sh -c 'echo 85 > /sys/bus/platform/devices/ps5-fan/target_temp'
 RemainAfterExit=yes
 
